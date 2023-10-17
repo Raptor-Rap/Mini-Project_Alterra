@@ -1,0 +1,58 @@
+.detail-page {
+  padding-top: 200px;
+  padding-bottom: 100px;
+  width: 100%;
+  background-color: var(--primary-color);
+}
+
+.detail-page .detail {
+  background-color: #fff;
+  padding: 0;
+}
+
+.detail-page .detail img {
+  padding: 10px;
+  height: 400px;
+  padding-right: 20px;
+}
+
+.detail-page .detail {
+  padding: 20px;
+}
+
+.detail-page .detail .text {
+  padding: 10px;
+  padding-left: 20px;
+  text-align: justify;
+}
+
+/* .detail-page .detail .price {
+
+} */
+
+/* Tampilan responsif untuk ukuran layar lebih kecil */
+@media screen and (max-width: 768px) {
+  .detail-page .detail .text {
+    padding-top: 8rem;
+    /* padding-bottom: 50px; */
+    /* flex-direction: column; */
+  }
+
+  .detail-page .detail img {
+    width: 400px;
+    display: block;
+    margin-inline: auto;
+  }
+}
+
+/* Tampilan responsif untuk ukuran layar sangat kecil */
+@media screen and (max-width: 576px) {
+  .detail-page {
+    padding-top: 50px;
+    padding-bottom: 25px;
+  }
+
+  .detail-page .row img {
+    height: 200px;
+  }
+}

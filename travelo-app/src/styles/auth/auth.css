@@ -1,0 +1,47 @@
+.login,
+.signup {
+  position: relative;
+}
+
+.login::before,
+.signup::before {
+  content: "";
+  background: url("https://images.unsplash.com/photo-1618324766504-4a94f694309d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80")
+    no-repeat;
+  background-size: 100% 100%;
+  opacity: 0.4;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.login::after,
+.signup::after {
+  content: "";
+  background: rgba(128, 128, 128, 0.3);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.form_container {
+  width: 30%;
+}
+
+@media screen and (max-width: 1000px) {
+  .form_container {
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .form_container {
+    width: 65%;
+  }
+}
