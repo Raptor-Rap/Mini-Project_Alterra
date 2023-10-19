@@ -104,7 +104,6 @@ export default function AddTestimoni() {
                   aria-label="destination-form"
                 >
                   <Input
-                    id="input-name"
                     aria-label="input-name"
                     label="Name"
                     name="name"
@@ -112,7 +111,6 @@ export default function AddTestimoni() {
                     error={errors.name?.message}
                   />
                   <Input
-                    id="input-testimoni-image"
                     aria-label="input-testimoni-image"
                     label="Image"
                     name="image"
@@ -121,7 +119,6 @@ export default function AddTestimoni() {
                     error={errors.image?.message}
                   />
                   <Input
-                    id="input-testimoni-alamat"
                     aria-label="input-testimoni-alamat"
                     label="Alamat"
                     name="address"
@@ -129,7 +126,6 @@ export default function AddTestimoni() {
                     error={errors.address?.message}
                   />
                   <TextArea
-                    id="input-testimoni-testi"
                     aria-label="input-testimoni-testi"
                     label="Testi"
                     role="input"
@@ -139,7 +135,6 @@ export default function AddTestimoni() {
                   />
                   <div className="d-grid pt-1">
                     <Button
-                      id="btn-submit"
                       aria-label="btn-submit"
                       label="Submit"
                       type="submit"

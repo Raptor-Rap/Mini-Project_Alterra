@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useLocation } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import * as z from "zod";
 
@@ -45,8 +46,11 @@ export const schema = z.object({
 });
 
 export default function AddDestination() {
-  const [selectedId, setSelectedId] = useState("");
+  const [selectedId, setSelectedId] = useState(0);
   const [destination, setDestination] = useState([]);
+
+  const location = useLocation();
+  const destinationData = location.state && location.state.destinationData;
 
   const {
     reset,
@@ -64,7 +68,14 @@ export default function AddDestination() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+    if (destinationData) {
+      setValue("destination", destinationData.destination);
+      setValue("image", destinationData.image);
+      setValue("description", destinationData.description);
+      setValue("price", destinationData.price);
+      setValue("rating", destinationData.rating);
+    }
+  }, [destinationData]);
 
   async function fetchData() {
     try {
@@ -72,6 +83,7 @@ export default function AddDestination() {
       setDestination(result);
     } catch (error) {
       console.log(error.toString());
+    } finally {
     }
   }
 
@@ -102,7 +114,7 @@ export default function AddDestination() {
         text: "Successfully updated the destination",
         showCancelButton: false,
       });
-      setSelectedId("");
+      setSelectedId(0);
       reset();
       fetchData();
     } catch (error) {
@@ -112,14 +124,6 @@ export default function AddDestination() {
         showCancelButton: false,
       });
     }
-  }
-
-  function onClickEdit(data) {
-    setSelectedId(data.id);
-    setValue("destination", data.destination);
-    setValue("image", data.image);
-    setValue("description", data.description);
-    setValue("price", data.price);
   }
 
   return (
@@ -138,12 +142,11 @@ export default function AddDestination() {
               <Col>
                 <form
                   onSubmit={handleSubmit(
-                    selectedId == "" ? onSubmit : onSubmitEdit
+                    selectedId == 0 ? onSubmit : onSubmitEdit
                   )}
                   aria-label="destination-form"
                 >
                   <Input
-                    id="input-destination-name"
                     aria-label="input-destination-name"
                     label="Destination Name"
                     name="destination"
@@ -151,7 +154,6 @@ export default function AddDestination() {
                     error={errors.destination?.message}
                   />
                   <Input
-                    id="input-destination-image"
                     aria-label="input-destination-image"
                     label="Image"
                     name="image"
@@ -160,7 +162,6 @@ export default function AddDestination() {
                     error={errors.image?.message}
                   />
                   <TextArea
-                    id="input-destination-description"
                     aria-label="input-destination-description"
                     label="Description"
                     role="input"
@@ -169,7 +170,6 @@ export default function AddDestination() {
                     error={errors.description?.message}
                   />
                   <Input
-                    id="input-destination-price"
                     aria-label="input-destination-price"
                     label="Price"
                     name="price"
@@ -178,7 +178,6 @@ export default function AddDestination() {
                     error={errors.price?.message}
                   />
                   <Input
-                    id="input-destination-rating"
                     aria-label="input-destination-rating"
                     label="Rating (1-5)"
                     name="rating"
@@ -188,7 +187,6 @@ export default function AddDestination() {
                   />
                   <div className="d-grid pt-1">
                     <Button
-                      id="btn-submit"
                       aria-label="btn-submit"
                       label="Submit"
                       type="submit"

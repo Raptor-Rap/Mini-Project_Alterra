@@ -71,6 +71,15 @@ export default function Router() {
       ),
     },
     {
+      path: "/destination/:id",
+      element: (
+        <>
+          <ScrollToTop />
+          <DetailDestination />
+        </>
+      ),
+    },
+    {
       path: "/addDestination",
       element:
         token === "" ? (
@@ -83,13 +92,16 @@ export default function Router() {
         ),
     },
     {
-      path: "/destination/:id",
-      element: (
-        <>
-          <ScrollToTop />
-          <DetailDestination />
-        </>
-      ),
+      path: "/addDestination/:id",
+      element:
+        token === "" ? (
+          <Navigate to="/" />
+        ) : (
+          <>
+            <ScrollToTop />
+            <AddDestination />
+          </>
+        ),
     },
     {
       path: "/transaction",

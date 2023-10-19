@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import HorseImage from "../../assets/img/horse.jpg";
 import { useNavigate, Link } from "react-router-dom";
 import { getDestinations } from "../../utils/apis/destination/api";
 import { getTestimonials } from "../../utils/apis/testimonial/api";
@@ -86,13 +85,6 @@ export default function homepage() {
                   </button>
                 </div>
               </Col>
-              {/* <Col lg="6" className="pt-lg-0 pt-5">
-                <img
-                  src={HorseImage}
-                  alt="hero-img"
-                  className="animate__animated animate__fadeInUp"
-                />
-              </Col> */}
             </Row>
           </Container>
         </header>

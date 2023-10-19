@@ -4,7 +4,6 @@ import { useNavigate, Link } from "react-router-dom";
 import {
   getDestinations,
   deleteDestination,
-  updateDestination,
 } from "../../utils/apis/destination/api";
 import { useToken } from "../../utils/contexts/token";
 
@@ -14,7 +13,6 @@ import Swal from "../../utils/swal";
 
 export default function Destinasi() {
   const navigate = useNavigate();
-  const [selectedId, setSelectedId] = useState("");
   const [destinations, setDestination] = useState([]);
   const { token } = useToken();
 
@@ -39,34 +37,10 @@ export default function Destinasi() {
     return stars;
   }
 
-  async function onSubmitEdit(data) {
-    try {
-      await updateDestination({ ...data, id: selectedId });
-      Swal.fire({
-        title: "Success",
-        text: "Successfully updated the destination",
-        showCancelButton: false,
-      });
-      setSelectedId("");
-      reset();
-      fetchData();
-    } catch (error) {
-      Swal.fire({
-        title: "Error",
-        text: error.message,
-        showCancelButton: false,
-      });
-    }
-  }
-
   function onClickEdit(data) {
-    setSelectedId(data.id);
-    setValue("destination", data.destination);
-    setValue("image", data.image);
-    setValue("description", data.description);
-    setValue("price", data.price);
-
-    navigate(`/addDestination/${data.id}`);
+    navigate(`/addDestination/${data.id}`, {
+      state: { destinationData: data },
+    });
   }
 
   async function onClickDelete(id_destinasi) {
@@ -127,7 +101,9 @@ export default function Destinasi() {
                     <div className="ket d-flex justify-content-between align-items-center px-3 pb-3">
                       <p className="m-0 text-primary fw-bold">{data.price}</p>
                       <div>
-                        {token === "" ? null : (
+                        {token === "" ? (
+                          <></>
+                        ) : (
                           <>
                             <button
                               className="btn btn-outline-primary rounded-1 me-2"
