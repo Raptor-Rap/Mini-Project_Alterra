@@ -5,11 +5,12 @@ import { useParams, useNavigate } from "react-router-dom";
 import "../../styles/destination/detail.css";
 
 import Layout from "../../components/layout";
+import { Loading } from "../../components/loading";
 
 export default function DetailTour() {
   const { id } = useParams();
-  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
 
   const [detail, setDetail] = useState([]);
 
@@ -22,21 +23,20 @@ export default function DetailTour() {
     try {
       const result = await getDetailDestinations(id);
       setDetail(result);
+      setIsLoading(false);
     } catch (error) {
       console.log(error.toString());
-    } finally {
-      setIsLoading(false);
     }
   }
 
   return (
     <Layout>
-      {isLoading ? (
-        <></>
-      ) : (
-        <div className="detail-page">
-          <Container>
-            <Row className="detail shadow-sm">
+      <div className="detail-page">
+        <Container>
+          <Row className="detail shadow-sm">
+            {isLoading ? (
+              <Loading />
+            ) : (
               <Col key={detail.id} data-aos="fade-up" data-aos-duration="1000">
                 <div className="d-flex">
                   <div>
@@ -61,10 +61,10 @@ export default function DetailTour() {
                   </div>
                 </div>
               </Col>
-            </Row>
-          </Container>
-        </div>
-      )}
+            )}
+          </Row>
+        </Container>
+      </div>
     </Layout>
   );
 }
