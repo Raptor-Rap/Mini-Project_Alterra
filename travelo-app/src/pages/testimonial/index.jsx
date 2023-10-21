@@ -3,6 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { getTestimonials } from "../../utils/apis/testimonial/api";
 import { useToken } from "../../utils/contexts/token";
+import { Loading } from "../../components/loading";
 
 import FaqComponent from "../../components/faq";
 import Layout from "../../components/layout";
@@ -11,6 +12,7 @@ export default function testimonialPage() {
   const { token } = useToken();
   const navigate = useNavigate();
   const [testimonial, setTestimonial] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetchData();
@@ -20,6 +22,7 @@ export default function testimonialPage() {
     try {
       const result = await getTestimonials();
       setTestimonial(result);
+      setIsLoading(false);
     } catch (error) {
       console.log(error.toString());
     }
@@ -40,24 +43,28 @@ export default function testimonialPage() {
                 </p>
               </Col>
             </Row>
-            <Row className="row-cols-lg-3 row-cols-1">
-              {testimonial.map((data) => {
-                return (
-                  <Col key={data.id} className="mb-2">
-                    <div className="bg shadow-sm">
-                      <div className="people mb-3 pt-3">
-                        <img src={data.image} alt="" />
-                        <div>
-                          <h5 className="mb-1">{data.name}</h5>
-                          <p className="m-0 fw-bold">{data.address}</p>
+            {isLoading ? (
+              <Loading />
+            ) : (
+              <Row className="row-cols-lg-3 row-cols-1">
+                {testimonial.map((data) => {
+                  return (
+                    <Col key={data.id} className="mb-2">
+                      <div className="bg shadow-sm">
+                        <div className="people mb-3 pt-3">
+                          <img src={data.image} alt="" />
+                          <div>
+                            <h5 className="mb-1">{data.name}</h5>
+                            <p className="m-0 fw-bold">{data.address}</p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <p className="desc shadow-sm">{data.testi}</p>
-                  </Col>
-                );
-              })}
-            </Row>
+                      <p className="desc shadow-sm">{data.testi}</p>
+                    </Col>
+                  );
+                })}
+              </Row>
+            )}
             <Row>
               <Col className="text-center">
                 {token === "" ? (
@@ -75,7 +82,7 @@ export default function testimonialPage() {
                     className="btn btn-success rounded-5 btn-lg"
                     data-aos="fade-up"
                     data-aos-duration="1000"
-                    onClick={() => navigate("/addTestimonial")}
+                    onClick={() => navigate("/testimonial/add")}
                   >
                     Tambah Testimoni
                     <i className="fa-solid fa-plus ms-1"></i>

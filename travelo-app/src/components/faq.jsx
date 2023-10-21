@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Accordion } from "react-bootstrap";
 import { getFaq } from "../utils/apis/faq/api";
+import { Loading } from "./loading";
 
 export default function FaqComponent() {
   const [faq, setFaq] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetchData();
@@ -13,6 +15,7 @@ export default function FaqComponent() {
     try {
       const result = await getFaq();
       setFaq(result);
+      setIsLoading(false);
     } catch (error) {
       console.log(error.toString());
     }
@@ -28,20 +31,24 @@ export default function FaqComponent() {
             </h2>
           </Col>
         </Row>
-        <Row className="row-cols-lg-2 row-cols-1 g-4 pt-5">
-          {faq.map((data) => {
-            return (
-              <Col key={data.id}>
-                <Accordion className="shadow-sm">
-                  <Accordion.Item eventKey={data.eventKey}>
-                    <Accordion.Header>{data.title}</Accordion.Header>
-                    <Accordion.Body>{data.description}</Accordion.Body>
-                  </Accordion.Item>
-                </Accordion>
-              </Col>
-            );
-          })}
-        </Row>
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <Row className="row-cols-lg-2 row-cols-1 g-4 pt-5">
+            {faq.map((data) => {
+              return (
+                <Col key={data.id}>
+                  <Accordion className="shadow-sm">
+                    <Accordion.Item eventKey={data.eventKey}>
+                      <Accordion.Header>{data.title}</Accordion.Header>
+                      <Accordion.Body>{data.description}</Accordion.Body>
+                    </Accordion.Item>
+                  </Accordion>
+                </Col>
+              );
+            })}
+          </Row>
+        )}
       </Container>
     </div>
   );
