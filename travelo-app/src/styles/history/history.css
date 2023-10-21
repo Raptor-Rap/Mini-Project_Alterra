@@ -4,3 +4,19 @@
   width: 100%;
   background-color: var(--primary-color);
 }
+
+.table thead th {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.table-page {
+  overflow-x: auto;
+}
+
+.no-history {
+  font-weight: bold;
+  color: #999;
+  text-align: center;
+  padding-top: 50px;
+}

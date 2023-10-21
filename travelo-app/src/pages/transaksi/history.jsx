@@ -29,48 +29,41 @@ export default function HistoryPembayaran() {
             </Row>
             <Row>
               <Col>
-                {isLoading ? (
-                  <Loading />
-                ) : historyPembayaran.length > 0 ? (
-                  <table className="table mt-5">
-                    <thead>
-                      <tr>
-                        <th>No.</th>
-                        <th>Nama</th>
-                        <th>Email</th>
-                        <th>Nomor Telepon</th>
-                        <th>Paket Wisata</th>
-                        <th>Metode Pembayaran</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {historyPembayaran.map((transaction, index) => (
-                        <tr key={index}>
-                          <td>{index + 1}</td>
-                          <td>{transaction.nama}</td>
-                          <td>{transaction.email}</td>
-                          <td>{transaction.telepon}</td>
-                          <td>{transaction.paket}</td>
-                          <td>{transaction.pembayaran}</td>
+                <div className="table-page">
+                  {isLoading ? (
+                    <Loading />
+                  ) : historyPembayaran.length > 0 ? (
+                    <table className="table mt-5">
+                      <thead>
+                        <tr>
+                          <th>No.</th>
+                          <th>Nama</th>
+                          <th>Email</th>
+                          <th>Nomor Telepon</th>
+                          <th>Paket Wisata</th>
+                          <th>Metode Pembayaran</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                ) : (
-                  <p>No payment history available.</p>
-                )}
+                      </thead>
+                      <tbody>
+                        {historyPembayaran.map((transaction, index) => (
+                          <tr key={index}>
+                            <td>{index + 1}</td>
+                            <td>{transaction.nama}</td>
+                            <td>{transaction.email}</td>
+                            <td>{transaction.telepon}</td>
+                            <td>{transaction.paket}</td>
+                            <td>{transaction.pembayaran}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  ) : (
+                    <p className="no-history">
+                      Tidak ada history pembayaran yang tersedia.
+                    </p>
+                  )}
+                </div>
               </Col>
-
-              {/* <Col>
-                {loading ? ( 
-                  <Loading/>
-                ) : paymentHistory.length > 0 ? (
-                  <table className="table mt-5">
-                  </table>
-                ) : (
-                  <p>No payment history available.</p>
-                )}
-              </Col> */}
             </Row>
           </Container>
         </div>
