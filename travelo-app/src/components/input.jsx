@@ -81,4 +81,30 @@ function Select(props) {
   );
 }
 
-export { Input, TextArea, Select };
+function Checkbox(props) {
+  const { label, id, error, register, name } = props;
+
+  return (
+    <div className="mb-4">
+      <div className="form-label">
+        <input
+          type="checkbox"
+          className={clsx("form-check-input", { "is-invalid": error })}
+          id={id}
+          {...(register ? register(name) : {})}
+          {...props}
+        />
+        <label className="form-check-label ms-2" htmlFor={id}>
+          {label}
+        </label>
+      </div>
+      {error && (
+        <div className="label">
+          <span className="invalid-feedback">{error}</span>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export { Input, TextArea, Select, Checkbox };
