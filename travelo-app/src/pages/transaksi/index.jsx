@@ -11,11 +11,11 @@ import Swal from "../../utils/swal";
 
 export const schema = z.object({
   id: z.string().optional(),
-  name: z.string().min(1, { message: "Please enter a valid name" }),
+  nama: z.string().min(1, { message: "Please enter a valid name" }),
   email: z.string().email().min(1, { message: "Email is required" }),
-  phone: z.number().min(1, { message: "Please enter a valid phone number" }),
-  package: z.string().min(1, { message: "Please select a tour package" }),
-  payment: z.string().min(1, { message: "Please select a payment method" }),
+  telepon: z.number().min(1, { message: "Please enter a valid phone number" }),
+  paket: z.string().min(1, { message: "Please select a tour package" }),
+  pembayaran: z.string().min(1, { message: "Please select a payment method" }),
 });
 
 export default function Transaction() {
@@ -29,9 +29,9 @@ export default function Transaction() {
   } = useForm({
     resolver: zodResolver(schema),
     defaultValues: {
-      phone: 0,
-      package: "",
-      payment: "",
+      telepon: 0,
+      paket: "",
+      pembayaran: "",
     },
   });
 
@@ -67,7 +67,7 @@ export default function Transaction() {
           <Container>
             <Row>
               <Col>
-                <h2 className="text-center mb-4">Book Your Tour</h2>
+                <h2 className="text-center mb-5">Pesan Tiket Anda</h2>
               </Col>
             </Row>
             <Row>
@@ -77,15 +77,13 @@ export default function Transaction() {
                   aria-label="transaction-form"
                 >
                   <Input
-                    id="input-name"
-                    aria-label="input-name"
-                    label="Name"
-                    name="name"
+                    aria-label="input-nama"
+                    label="Nama"
+                    name="nama"
                     register={register}
                     error={errors.name?.message}
                   />
                   <Input
-                    id="input-email"
                     aria-label="input-email"
                     label="Email"
                     name="email"
@@ -93,40 +91,36 @@ export default function Transaction() {
                     error={errors.email?.message}
                   />
                   <Input
-                    id="input-phone-number"
-                    aria-label="input-phone-number"
-                    label="Phone Number"
-                    name="phone"
+                    aria-label="input-nomor-telepon"
+                    label="Nomor Telepon"
+                    name="telepon"
                     type="number"
                     register={register}
                     error={errors.phone?.message}
                   />
                   <Select
-                    id="select-package-tour"
-                    aria-label="select-package-tour"
-                    label="Select Tour Package"
-                    name="package"
+                    aria-label="select-paket-wisata"
+                    label="Pilih Paket Wisata"
+                    name="paket"
                     options={[
-                      "Tour Package 1",
-                      "Tour Package 2",
-                      "Tour Package 3",
+                      "Paket Wisata 1",
+                      "Paket Wisata 2",
+                      "Paket Wisata 3",
                     ]}
-                    placeholder="Select Package"
+                    placeholder="Pilih Paket"
                     register={register}
                     error={errors.package?.message}
                   />
                   <Select
-                    id="select-payment-method"
-                    aria-label="select-payment-method"
-                    label="Select Payment Method"
-                    name="payment"
-                    options={["Credit Card", "Debit Card", "Paypal"]}
-                    placeholder="Select payment method"
+                    aria-label="select-metode-pembayaran"
+                    label="Pilih Metode Pembayaran"
+                    name="pembayaran"
+                    options={["Kartu kredit", "Kartu debit", "Paypal"]}
+                    placeholder="Pilih Metode Pembayaran"
                     register={register}
                     error={errors.payment?.message}
                   />
                   <Button
-                    id="btn-submit"
                     aria-label="btn-submit"
                     label="Submit"
                     type="submit"
