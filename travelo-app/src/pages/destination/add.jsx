@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import * as z from "zod";
 
@@ -41,16 +41,14 @@ export const schema = z.object({
   description: z
     .string()
     .min(1, { message: "Please enter a valid description" }),
-  price: z.number().min(1, { message: "Please enter a valid price" }),
+  price: z.string().min(1, { message: "Please enter a valid price" }),
   rating: z.number().min(1, { message: "Please enter a valid rating" }),
 });
 
 export default function AddDestination() {
+  const { id } = useParams();
   const [selectedId, setSelectedId] = useState(0);
   const [destination, setDestination] = useState([]);
-
-  const location = useLocation();
-  const destinationData = location.state && location.state.destinationData;
 
   const {
     reset,
@@ -61,29 +59,30 @@ export default function AddDestination() {
   } = useForm({
     resolver: zodResolver(schema),
     defaultValues: {
-      price: 0,
       rating: 0,
     },
   });
 
   useEffect(() => {
     fetchData();
-    if (destinationData) {
-      setValue("destination", destinationData.destination);
-      setValue("image", destinationData.image);
-      setValue("description", destinationData.description);
-      setValue("price", destinationData.price);
-      setValue("rating", destinationData.rating);
-    }
-  }, [destinationData]);
+  }, []);
 
   async function fetchData() {
     try {
       const result = await getDestinations();
       setDestination(result);
+
+      const destinationData = result.find((item) => item.id === id);
+      if (destinationData) {
+        setSelectedId(destinationData.id);
+        setValue("destination", destinationData.destination);
+        setValue("image", destinationData.image);
+        setValue("description", destinationData.description);
+        setValue("price", destinationData.price);
+        setValue("rating", destinationData.rating);
+      }
     } catch (error) {
       console.log(error.toString());
-    } finally {
     }
   }
 
@@ -125,6 +124,8 @@ export default function AddDestination() {
       });
     }
   }
+
+  function edit(id) {}
 
   return (
     <Layout>
@@ -173,7 +174,6 @@ export default function AddDestination() {
                     aria-label="input-destination-price"
                     label="Price"
                     name="price"
-                    type="number"
                     register={register}
                     error={errors.price?.message}
                   />
@@ -188,7 +188,7 @@ export default function AddDestination() {
                   <div className="d-grid pt-1">
                     <Button
                       aria-label="btn-submit"
-                      label="Submit"
+                      label={selectedId == 0 ? "Submit" : "Update"}
                       type="submit"
                       disabled={isSubmitting}
                     />
