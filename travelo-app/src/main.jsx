@@ -13,9 +13,7 @@ import App from "./routes";
 import { TokenProvider } from "./utils/contexts/token";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <TokenProvider>
-      <App />
-    </TokenProvider>
-  </React.StrictMode>
+  <TokenProvider>
+    <App />
+  </TokenProvider>
 );
