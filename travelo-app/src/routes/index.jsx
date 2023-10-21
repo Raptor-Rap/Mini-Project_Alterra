@@ -16,6 +16,7 @@ import AddDestination from "../pages/destination/add";
 import AddTestimonial from "../pages/testimonial/add";
 import DetailDestination from "../pages/destination/detail";
 import Transaction from "../pages/transaksi/index";
+import History from "../pages/transaksi/history";
 import ScrollToTop from "../components/scroll";
 import { setAxiosConfig } from "../utils/apis/axiosWithConfig";
 import { useToken } from "../utils/contexts/token";
@@ -80,7 +81,7 @@ export default function Router() {
       ),
     },
     {
-      path: "/addDestination",
+      path: "/destination/:id/edit",
       element:
         token === "" ? (
           <Navigate to="/" />
@@ -92,7 +93,7 @@ export default function Router() {
         ),
     },
     {
-      path: "/addDestination/:id",
+      path: "/destination/add",
       element:
         token === "" ? (
           <Navigate to="/" />
@@ -113,6 +114,15 @@ export default function Router() {
       ),
     },
     {
+      path: "/history",
+      element: (
+        <>
+          <ScrollToTop />
+          <History />
+        </>
+      ),
+    },
+    {
       path: "/testimonial",
       element: (
         <>
@@ -122,7 +132,7 @@ export default function Router() {
       ),
     },
     {
-      path: "/addTestimonial",
+      path: "/testimonial/add",
       element:
         token === "" ? (
           <Navigate to="/" />

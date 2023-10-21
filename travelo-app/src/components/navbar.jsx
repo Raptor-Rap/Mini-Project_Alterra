@@ -48,6 +48,9 @@ export default function NavbarComponent() {
                 <NavLink to="/testimonial">Testimonial</NavLink>
               </div>
               <div className="nav-link">
+                <NavLink to="/history">History</NavLink>
+              </div>
+              <div className="nav-link">
                 <NavLink to="/faq">FAQ</NavLink>
               </div>
               <div className="nav-link">
