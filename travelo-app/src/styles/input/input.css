@@ -1,5 +1,6 @@
 .add-destination .destination,
-.add-testimonial .testimonial {
+.add-testimonial .testimonial,
+.transaction-page .transaction {
   background-color: var(--primary-color);
 }
 
@@ -13,6 +14,7 @@
 }
 
 .add-destination .destination .row:nth-child(1),
-.add-testimonial .testimonial .row:nth-child(1) {
+.add-testimonial .testimonial .row:nth-child(1),
+.transaction-page .transaction .row:nth-child(1) {
   padding-bottom: 80px;
 }

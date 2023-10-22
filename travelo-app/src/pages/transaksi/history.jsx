@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../components/layout";
 import { Container, Row, Col } from "react-bootstrap";
-import "../../styles/history/history.css";
 import { Loading } from "../../components/loading";
+import "../../styles/history/history.css";
+
+import TablePagination from "../../components/table/pagination";
+import Table from "../../components/table/index";
 
 export default function HistoryPembayaran() {
   const [historyPembayaran, setHistoryPembayaran] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [historyPerPage, setHistoryPerPage] = useState(10);
 
   useEffect(() => {
     setTimeout(() => {
@@ -17,10 +22,19 @@ export default function HistoryPembayaran() {
     }, 1000);
   }, []);
 
+  const indexOfLastHistory = currentPage * historyPerPage;
+  const indexOfFirstHistory = indexOfLastHistory - historyPerPage;
+  const currentHistory = historyPembayaran.slice(
+    indexOfFirstHistory,
+    indexOfLastHistory
+  );
+
+  const onPageChange = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <Layout>
       <div className="history-page">
-        <div className="history min-vh-100">
+        <div className="history">
           <Container>
             <Row>
               <Col>
@@ -33,30 +47,24 @@ export default function HistoryPembayaran() {
                   {isLoading ? (
                     <Loading />
                   ) : historyPembayaran.length > 0 ? (
-                    <table className="table mt-5">
-                      <thead>
-                        <tr>
-                          <th>No.</th>
-                          <th>Nama</th>
-                          <th>Email</th>
-                          <th>Nomor Telepon</th>
-                          <th>Paket Wisata</th>
-                          <th>Metode Pembayaran</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {historyPembayaran.map((transaction, index) => (
-                          <tr key={index}>
-                            <td>{index + 1}</td>
-                            <td>{transaction.nama}</td>
-                            <td>{transaction.email}</td>
-                            <td>{transaction.telepon}</td>
-                            <td>{transaction.paket}</td>
-                            <td>{transaction.pembayaran}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
+                    <div>
+                      <div className="table-responsive">
+                        <Table
+                          data={currentHistory}
+                          currentPage={currentPage}
+                          historyPerPage={historyPerPage}
+                        />
+                      </div>
+                      <div>
+                        <TablePagination
+                          currentPage={currentPage}
+                          pageCount={Math.ceil(
+                            historyPembayaran.length / historyPerPage
+                          )}
+                          onPageChange={onPageChange}
+                        />
+                      </div>
+                    </div>
                   ) : (
                     <p className="no-history">
                       Tidak ada history pembayaran yang tersedia.

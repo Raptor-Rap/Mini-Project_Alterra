@@ -2,6 +2,7 @@
   padding-top: 200px;
   padding-bottom: 100px;
   width: 100%;
+  min-height: 80vh;
   background-color: var(--primary-color);
 }
 
@@ -12,6 +13,8 @@
 
 .table-page {
   overflow-x: auto;
+  position: relative;
+  max-width: 100%;
 }
 
 .no-history {
@@ -20,3 +23,13 @@
   text-align: center;
   padding-top: 50px;
 }
+
+.pagination {
+  justify-content: flex-end;
+}
+
+/*STYLE PAGINATION*/
+.green-arrow .page-link {
+  color: green !important;
+}
+/*STYLE PAGINATION*/
