@@ -105,7 +105,7 @@ export default function Router() {
         ),
     },
     {
-      path: "/transaction",
+      path: "/destination/:id/transaction",
       element: (
         <>
           <ScrollToTop />
