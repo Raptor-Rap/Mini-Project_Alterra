@@ -38,26 +38,34 @@ export default function DetailTour() {
               <Loading />
             ) : (
               <Col key={detail.id} data-aos="fade-up" data-aos-duration="1000">
-                <div className="d-flex">
+                <div className="card-detail d-flex">
                   <div>
                     <img src={detail.image} alt="Tour Image" />
                   </div>
-                  <div className="text">
-                    <h2>{detail.destination}</h2>
-                    <p className="animate__animated animate__fadeInUp animate__delay-0.8s">
-                      {detail.description}
-                    </p>
-                    <div className="price d-flex justify-content-between align-items-center">
-                      <p className="animate__animated animate__fadeInUp animate__delay-1s text-primary">
-                        {detail.price}
+                  <div className="text container ">
+                    <div className="row align-items-start">
+                      <h2>{detail.destination}</h2>
+                      <p className="detail-description animate__animated animate__fadeInUp animate__delay-0.8s">
+                        {detail.description}
                       </p>
-                      <button
-                        className="btn btn-success animate__animated animate__fadeInUp animate__delay-1s"
-                        onClick={() => navigate("/transaction")}
-                      >
-                        Beli Tiket
-                      </button>
                     </div>
+                    <Row className="price d-flex justify-content-between align-items-center align-items-end">
+                      <Col>
+                        <p className="animate__animated animate__fadeInUp animate__delay-1s text-primary">
+                          {detail.price}
+                        </p>
+                      </Col>
+                      <Col className="col-auto">
+                        <button
+                          className="btn btn-success animate__animated animate__fadeInUp animate__delay-1s"
+                          onClick={() =>
+                            navigate(`/destination/${detail.id}/transaction`)
+                          }
+                        >
+                          Beli Tiket
+                        </button>
+                      </Col>
+                    </Row>
                   </div>
                 </div>
               </Col>
