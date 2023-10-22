@@ -2,13 +2,12 @@ import { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import React from "react";
+import { toast } from "react-toastify";
 import * as z from "zod";
 import "../../styles/auth/auth.css";
 
 import { Input, Checkbox } from "../../components/input";
 import { useToken } from "../../utils/contexts/token";
-import Swal from "../../utils/swal";
 import { userLogin } from "../../utils/apis/auth/api";
 import Button from "../../components/button";
 
@@ -44,18 +43,14 @@ export default function Login() {
     try {
       const result = await userLogin(data);
       changeToken(JSON.stringify(result.payload));
-
+      toast.success("Successfully login");
       if (getValues("remember")) {
         localStorage.setItem("rememberedUser", JSON.stringify(data));
       } else {
         localStorage.removeItem("rememberedUser");
       }
     } catch (error) {
-      Swal.fire({
-        title: "Error",
-        text: error.message,
-        showCancelButton: false,
-      });
+      toast.error(error.message);
     }
   }
 

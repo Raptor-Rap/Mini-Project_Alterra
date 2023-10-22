@@ -3,12 +3,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
+import { toast } from "react-toastify";
 import * as z from "zod";
 
 import { Input, TextArea } from "../../components/input";
 import Layout from "../../components/layout";
 import Button from "../../components/button";
-import Swal from "../../utils/swal";
 import {
   createDestination,
   getDestinations,
@@ -89,43 +89,24 @@ export default function AddDestination() {
   async function onSubmit(data) {
     try {
       await createDestination(data);
-      Swal.fire({
-        title: "Success",
-        text: "Successfully created a new destination",
-        showCancelButton: false,
-      });
+      toast.success("Successfully added new destination");
       reset();
       fetchData();
     } catch (error) {
-      Swal.fire({
-        title: "Error",
-        text: error.message,
-        showCancelButton: false,
-      });
+      toast.error(error.message);
     }
   }
 
   async function onSubmitEdit(data) {
     try {
       await updateDestination({ ...data, id: selectedId });
-      Swal.fire({
-        title: "Success",
-        text: "Successfully updated the destination",
-        showCancelButton: false,
-      });
+      toast.success("Successfully edited destination");
       setSelectedId(0);
       reset();
-      fetchData();
     } catch (error) {
-      Swal.fire({
-        title: "Error",
-        text: error.message,
-        showCancelButton: false,
-      });
+      toast.error(error.message);
     }
   }
-
-  function edit(id) {}
 
   return (
     <Layout>
@@ -149,14 +130,14 @@ export default function AddDestination() {
                 >
                   <Input
                     aria-label="input-destination-name"
-                    label="Destination Name"
+                    label="Nama Destinasi"
                     name="destination"
                     register={register}
                     error={errors.destination?.message}
                   />
                   <Input
                     aria-label="input-destination-image"
-                    label="Image"
+                    label="Gambar"
                     name="image"
                     type="file"
                     register={register}
@@ -164,7 +145,7 @@ export default function AddDestination() {
                   />
                   <TextArea
                     aria-label="input-destination-description"
-                    label="Description"
+                    label="Deskripsi"
                     role="input"
                     name="description"
                     register={register}
@@ -172,8 +153,9 @@ export default function AddDestination() {
                   />
                   <Input
                     aria-label="input-destination-price"
-                    label="Price"
+                    label="Harga"
                     name="price"
+                    placeholder="Rp."
                     register={register}
                     error={errors.price?.message}
                   />

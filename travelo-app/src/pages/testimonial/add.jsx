@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Container, Row, Col } from "react-bootstrap";
+import { toast } from "react-toastify";
 import * as z from "zod";
 
 import { Input, TextArea } from "../../components/input";
 import Layout from "../../components/layout";
 import Button from "../../components/button";
-import Swal from "../../utils/swal";
 import {
   createTestimonial,
   getTestimonials,
@@ -69,19 +69,11 @@ export default function AddTestimoni() {
   async function onSubmit(data) {
     try {
       await createTestimonial(data);
-      Swal.fire({
-        title: "Success",
-        text: "Successfully created a new testimoni",
-        showCancelButton: false,
-      });
+      toast.success("Successfully added new testimoni");
       reset();
       fetchData();
     } catch (error) {
-      Swal.fire({
-        title: "Error",
-        text: error.message,
-        showCancelButton: false,
-      });
+      toast.error(error.message);
     }
   }
 
@@ -105,14 +97,14 @@ export default function AddTestimoni() {
                 >
                   <Input
                     aria-label="input-name"
-                    label="Name"
+                    label="Nama"
                     name="name"
                     register={register}
                     error={errors.name?.message}
                   />
                   <Input
                     aria-label="input-testimoni-image"
-                    label="Image"
+                    label="Gambar (Profil)"
                     name="image"
                     type="file"
                     register={register}
@@ -127,7 +119,7 @@ export default function AddTestimoni() {
                   />
                   <TextArea
                     aria-label="input-testimoni-testi"
-                    label="Testi"
+                    label="Testimoni"
                     role="input"
                     name="testi"
                     register={register}

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
-
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useToken } from "../utils/contexts/token";
 
 export default function NavbarComponent() {
@@ -19,20 +19,28 @@ export default function NavbarComponent() {
 
   useEffect(() => {
     changeBackgroundColor();
-
     window.addEventListener("scroll", changeBackgroundColor);
   });
 
   function handleLogout() {
     changeToken();
-    // toast.success("Successfully logout");
+    toast.success("Successfully logout");
   }
 
   return (
     <div>
-      <Navbar expand="lg" className={changeColor ? "color-active" : ""}>
+      <Navbar
+        expand="lg"
+        className={`${
+          changeColor ? "bg-white color-active" : ""
+        } burger-button`}
+      >
         <Container>
-          <Navbar.Brand href="#home" className="fs-3 fw-bold">
+          <Navbar.Brand
+            className="fs-3 fw-bold"
+            style={{ cursor: "pointer" }}
+            onClick={() => navigate("/")}
+          >
             Travelo.
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

@@ -10,7 +10,7 @@ import { Loading } from "../../components/loading";
 
 import FaqComponent from "../../components/faq";
 import Layout from "../../components/layout";
-import Swal from "../../utils/swal";
+import { toast } from "react-toastify";
 
 export default function Destinasi() {
   const navigate = useNavigate();
@@ -47,18 +47,10 @@ export default function Destinasi() {
   async function onClickDelete(id_destinasi) {
     try {
       await deleteDestination(id_destinasi);
-      Swal.fire({
-        title: "Success",
-        text: "Successfully deleted the destination",
-        showCancelButton: false,
-      });
+      toast.success("Successfully deleted the destination");
       fetchData();
     } catch (error) {
-      Swal.fire({
-        title: "Error",
-        text: error.message,
-        showCancelButton: false,
-      });
+      toast.error(error.message);
     }
   }
 

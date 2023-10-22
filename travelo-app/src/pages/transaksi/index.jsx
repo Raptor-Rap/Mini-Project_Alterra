@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Container, Row, Col } from "react-bootstrap";
+import { toast } from "react-toastify";
 import * as z from "zod";
 
 import { Input, Select } from "../../components/input";
 import Layout from "../../components/layout";
 import Button from "../../components/button";
-import Swal from "../../utils/swal";
 
 export const schema = z.object({
   id: z.string().optional(),
@@ -46,18 +46,16 @@ export default function Transaction() {
   };
 
   function onSubmit(data) {
-    const newData = { ...data };
-    const dupeArr = [...transactions, newData];
-    setTransactions(dupeArr);
-    reset();
-    localStorages(dupeArr);
-
-    Swal.fire({
-      title: "Success",
-      text: "Transaction process is complete.",
-      icon: "success",
-      showCancelButton: false,
-    });
+    try {
+      const newData = { ...data };
+      const dupeArr = [...transactions, newData];
+      setTransactions(dupeArr);
+      reset();
+      localStorages(dupeArr);
+      toast.success("Transaction process is complete");
+    } catch (error) {
+      toast.error(error.message);
+    }
   }
 
   return (
@@ -67,7 +65,7 @@ export default function Transaction() {
           <Container>
             <Row>
               <Col>
-                <h2 className="text-center mb-5">Pesan Tiket Anda</h2>
+                <h2 className="text-center">Pesan Tiket Anda</h2>
               </Col>
             </Row>
             <Row>

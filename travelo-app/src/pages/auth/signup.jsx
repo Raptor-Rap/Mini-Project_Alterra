@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { toast } from "react-toastify";
 import "../../styles/auth/auth.css";
 
 import { Input } from "../../components/input";
 import { userRegister } from "../../utils/apis/auth/api";
 import Button from "../../components/button";
-import Swal from "../../utils/swal";
 
 const registerSchema = z
   .object({
@@ -35,18 +35,10 @@ export default function Signup() {
   async function handleSignUp(data) {
     try {
       const result = await userRegister(data);
-      Swal.fire({
-        title: "Success",
-        text: result.message,
-        showCancelButton: false,
-      });
+      toast.success(result.message);
       navigate("/login");
     } catch (error) {
-      Swal.fire({
-        title: "Error",
-        text: error.message,
-        showCancelButton: false,
-      });
+      toast.error(error.message);
     }
   }
 
