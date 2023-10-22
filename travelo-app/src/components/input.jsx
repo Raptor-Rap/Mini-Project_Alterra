@@ -2,7 +2,7 @@ import clsx from "clsx";
 import "../styles/input/input.css";
 
 function Input(props) {
-  const { label, id, error, register, name, type } = props;
+  const { label, id, error, register, name, type, placeholder } = props;
 
   return (
     <div className="mb-4">
@@ -17,6 +17,7 @@ function Input(props) {
             })
           : {})}
         {...props}
+        placeholder={placeholder}
       />
       {error && (
         <label className="label">
