@@ -48,11 +48,11 @@ export default function FooterComponent() {
             <p onClick={() => navigate("/syarat")}>Syarat & Ketentuan</p>
           </Col>
           <Col lg="4" className="mt-lg-0 mt-5">
-            <h5 className="fw-bold mb-3">Subscribe untuk info Menarik</h5>
+            <h5 className="fw-bold mb-3">Berlangganan</h5>
             <div className="subscribes">
-              <input type="text" placeholder="Subscribe..." />
+              <input type="text" placeholder="Email" />
               <button className="btn btn-danger rounded-end rounded-0">
-                Subscribe
+                Get Now!
               </button>
             </div>
             <div className="social mt-3">

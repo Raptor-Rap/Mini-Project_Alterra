@@ -30,6 +30,6 @@
 
 /*STYLE PAGINATION*/
 .green-arrow .page-link {
-  color: green !important;
+  color: var(--secondary-color) !important;
 }
 /*STYLE PAGINATION*/

@@ -3,6 +3,7 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useToken } from "../utils/contexts/token";
+import Logo from "../assets/img/travelo.png";
 
 export default function NavbarComponent() {
   const [changeColor, setChangeColor] = useState(false);
@@ -41,6 +42,13 @@ export default function NavbarComponent() {
             style={{ cursor: "pointer" }}
             onClick={() => navigate("/")}
           >
+            <img
+              src={Logo}
+              alt="Logo Travelo"
+              width="40"
+              height="40"
+              className="me-1"
+            />
             Travelo.
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
