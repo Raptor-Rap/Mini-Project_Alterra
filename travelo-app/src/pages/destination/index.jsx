@@ -7,10 +7,10 @@ import {
 } from "../../utils/apis/destination/api";
 import { useToken } from "../../utils/contexts/token";
 import { Loading } from "../../components/loading";
+import { toast } from "react-toastify";
 
 import FaqComponent from "../../components/faq";
 import Layout from "../../components/layout";
-import { toast } from "react-toastify";
 
 export default function Destinasi() {
   const navigate = useNavigate();

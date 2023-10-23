@@ -9,6 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
+import { Loading } from "../../components/loading";
 
 import Layout from "../../components/layout";
 import FaqComponent from "../../components/faq";
@@ -18,6 +19,7 @@ export default function homepage() {
   const [newDestinations, setDestination] = useState([]);
   const [testimonial, setTestimonial] = useState([]);
   const [expanded, setExpanded] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetchDataDestinations();
@@ -29,6 +31,7 @@ export default function homepage() {
       const result = await getDestinations();
       const limitedDestinations = result.slice(0, 4);
       setDestination(limitedDestinations);
+      setIsLoading(false);
     } catch (error) {
       console.log(error.toString());
     }
@@ -39,6 +42,7 @@ export default function homepage() {
       const response = await getTestimonials();
       const limitedTestimonials = response.slice(0, 6);
       setTestimonial(limitedTestimonials);
+      setIsLoading(false);
     } catch (error) {
       console.error(error.toString());
     }
@@ -99,32 +103,36 @@ export default function homepage() {
               </Col>
             </Row>
             <Row>
-              {newDestinations.map((data) => {
-                return (
-                  <Col
-                    key={data.id}
-                    className="shadow rounded"
-                    data-aos="fade-up"
-                    data-aos-duration="1000"
-                  >
-                    <img
-                      src={data.image}
-                      alt="destination"
-                      className="w-100 mb-3 rounded-top"
-                    />
-                    <h5 className="px-3">{data.destination}</h5>
-                    <div className="star pb-3 px-3">
-                      {renderStars(data.rating)}
-                    </div>
-                    <Link to={`/destination/${data.id}`}>
-                      <p className="px-3 pb-2">Selengkapnya...</p>
-                    </Link>
-                    <div className="ket d-flex justify-content-between align-items-center px-3 pb-3">
-                      <p className="m-0 text-primary fw-bold">{data.price}</p>
-                    </div>
-                  </Col>
-                );
-              })}
+              {isLoading ? (
+                <Loading />
+              ) : (
+                newDestinations.map((data) => {
+                  return (
+                    <Col
+                      key={data.id}
+                      className="shadow rounded"
+                      data-aos="fade-up"
+                      data-aos-duration="1000"
+                    >
+                      <img
+                        src={data.image}
+                        alt="destination"
+                        className="w-100 mb-3 rounded-top"
+                      />
+                      <h5 className="px-3">{data.destination}</h5>
+                      <div className="star pb-3 px-3">
+                        {renderStars(data.rating)}
+                      </div>
+                      <Link to={`/destination/${data.id}`}>
+                        <p className="px-3 pb-2">Selengkapnya...</p>
+                      </Link>
+                      <div className="ket d-flex justify-content-between align-items-center px-3 pb-3">
+                        <p className="m-0 text-primary fw-bold">{data.price}</p>
+                      </div>
+                    </Col>
+                  );
+                })
+              )}
             </Row>
             <Row>
               <Col className="text-center">
@@ -176,38 +184,42 @@ export default function homepage() {
                 modules={[Pagination]}
                 className="mySwiper"
               >
-                {testimonial.map((data) => {
-                  const isExpanded = expanded[data.id] || false;
-                  return (
-                    <SwiperSlide key={data.id} className="shadow-sm">
-                      <div className="people mb-5">
-                        <img src={data.image} alt="" />
-                        <div>
-                          <h5 className="mb-1">{data.name}</h5>
-                          <p className="m-0 fw-bold">{data.address}</p>
+                {isLoading ? (
+                  <Loading />
+                ) : (
+                  testimonial.map((data) => {
+                    const isExpanded = expanded[data.id] || false;
+                    return (
+                      <SwiperSlide key={data.id} className="shadow-sm">
+                        <div className="people mb-5">
+                          <img src={data.image} alt="" />
+                          <div>
+                            <h5 className="mb-1">{data.name}</h5>
+                            <p className="m-0 fw-bold">{data.address}</p>
+                          </div>
                         </div>
-                      </div>
-                      <p className="desc">
-                        {isExpanded
-                          ? data.testi
-                          : data.testi.split(" ").slice(0, 7).join(" ")}
-                        {data.testi.split(" ").length > 10 && (
-                          <span
-                            style={{
-                              color: "#0d6efd",
-                              cursor: "pointer",
-                              textDecoration: "underline",
-                            }}
-                            onClick={() => toggleExpanded(data.id)}
-                          >
-                            <br />
-                            {isExpanded ? "Sembunyikan" : "Selengkapnya..."}
-                          </span>
-                        )}
-                      </p>
-                    </SwiperSlide>
-                  );
-                })}
+                        <p className="desc">
+                          {isExpanded
+                            ? data.testi
+                            : data.testi.split(" ").slice(0, 7).join(" ")}
+                          {data.testi.split(" ").length > 10 && (
+                            <span
+                              style={{
+                                color: "#0d6efd",
+                                cursor: "pointer",
+                                textDecoration: "underline",
+                              }}
+                              onClick={() => toggleExpanded(data.id)}
+                            >
+                              <br />
+                              {isExpanded ? "Sembunyikan" : "Selengkapnya..."}
+                            </span>
+                          )}
+                        </p>
+                      </SwiperSlide>
+                    );
+                  })
+                )}
               </Swiper>
             </Row>
           </Container>
