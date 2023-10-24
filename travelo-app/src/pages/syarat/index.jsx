@@ -83,9 +83,7 @@ export default function syarat() {
             </Row>
             <Row className="py-3">
               <Col>
-                <h4 className="fw-bold">
-                  5. FAQ (Frequently Asked Questions):
-                </h4>
+                <h4 className="fw-bold">5. FAQ (Frequently Asked Questions)</h4>
                 <p>
                   a. Anda dapat menggunakan halaman FAQ untuk mencari informasi
                   terkait dengan perjalanan dan penggunaan website.

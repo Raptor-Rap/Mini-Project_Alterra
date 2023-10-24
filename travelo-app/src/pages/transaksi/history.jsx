@@ -38,7 +38,9 @@ export default function HistoryPembayaran() {
           <Container>
             <Row>
               <Col>
-                <h2 className="text-center mb-5">History Pembayaran</h2>
+                <h2 className="text-center fw-bold animate__animated animate__fadeInUp animate__delay-0.8s mb-5">
+                  History Pembayaran
+                </h2>
               </Col>
             </Row>
             <Row>

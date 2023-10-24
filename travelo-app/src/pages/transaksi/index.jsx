@@ -65,7 +65,9 @@ export default function Transaction() {
           <Container>
             <Row>
               <Col>
-                <h2 className="text-center">Pesan Tiket Anda</h2>
+                <h2 className="text-center fw-bold text-center animate__animated animate__fadeInUp animate__delay-0.8s">
+                  Pesan Tiket Anda
+                </h2>
               </Col>
             </Row>
             <Row>
@@ -118,12 +120,14 @@ export default function Transaction() {
                     register={register}
                     error={errors.payment?.message}
                   />
-                  <Button
-                    aria-label="btn-submit"
-                    label="Submit"
-                    type="submit"
-                    disabled={isSubmitting}
-                  />
+                  <div className="d-grid pt-1">
+                    <Button
+                      aria-label="btn-submit"
+                      label="Submit"
+                      type="submit"
+                      disabled={isSubmitting}
+                    />
+                  </div>
                 </form>
               </Col>
             </Row>
