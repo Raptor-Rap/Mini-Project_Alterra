@@ -125,14 +125,12 @@ export default function AddTestimoni() {
                     register={register}
                     error={errors.testi?.message}
                   />
-                  <div className="d-grid pt-1">
-                    <Button
-                      aria-label="btn-submit"
-                      label="Submit"
-                      type="submit"
-                      disabled={isSubmitting}
-                    />
-                  </div>
+                  <Button
+                    aria-label="btn-submit"
+                    label="Submit"
+                    type="submit"
+                    disabled={isSubmitting}
+                  />
                 </form>
               </Col>
             </Row>

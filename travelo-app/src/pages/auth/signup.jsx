@@ -73,15 +73,13 @@ export default function Signup() {
             error={errors.repassword?.message}
             type="password"
           />
-          <div className="d-grid">
-            <Button
-              aria-label="btn-submit"
-              label="Sign Up"
-              type="submit"
-              disabled={isSubmitting}
-              aria-disabled={isSubmitting}
-            />
-          </div>
+          <Button
+            aria-label="btn-submit"
+            label="Sign Up"
+            type="submit"
+            disabled={isSubmitting}
+            aria-disabled={isSubmitting}
+          />
           <p className="text-center mt-3">
             Already have account?
             <Link to="/login" className="ms-2">

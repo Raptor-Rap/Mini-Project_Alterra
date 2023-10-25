@@ -80,15 +80,13 @@ export default function Login() {
             name="remember"
             register={register}
           />
-          <div className="d-grid">
-            <Button
-              aria-label="btn-submit"
-              label="Submit"
-              type="submit"
-              disabled={isSubmitting}
-              aria-disabled={isSubmitting}
-            />
-          </div>
+          <Button
+            aria-label="btn-submit"
+            label="Submit"
+            type="submit"
+            disabled={isSubmitting}
+            aria-disabled={isSubmitting}
+          />
           <p className="text-center mt-3">
             Don't have account yet?
             <Link to="/signup" className="ms-2">

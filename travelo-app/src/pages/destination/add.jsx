@@ -167,14 +167,12 @@ export default function AddDestination() {
                     register={register}
                     error={errors.rating?.message}
                   />
-                  <div className="d-grid pt-1">
-                    <Button
-                      aria-label="btn-submit"
-                      label={selectedId == 0 ? "Submit" : "Update"}
-                      type="submit"
-                      disabled={isSubmitting}
-                    />
-                  </div>
+                  <Button
+                    aria-label="btn-submit"
+                    label={selectedId == 0 ? "Submit" : "Update"}
+                    type="submit"
+                    disabled={isSubmitting}
+                  />
                 </form>
               </Col>
             </Row>
