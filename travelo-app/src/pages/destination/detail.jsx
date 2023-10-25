@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { getDetailDestinations } from "../../utils/apis/destination/api";
 import { useParams, useNavigate } from "react-router-dom";
+import { useToken } from "../../utils/contexts/token";
 import "../../styles/destination/detail.css";
 
 import Layout from "../../components/layout";
@@ -10,6 +11,7 @@ import { Loading } from "../../components/loading";
 export default function DetailTour() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { token } = useToken();
   const [isLoading, setIsLoading] = useState(true);
 
   const [detail, setDetail] = useState([]);
@@ -56,14 +58,29 @@ export default function DetailTour() {
                         </p>
                       </Col>
                       <Col className="col-auto">
-                        <button
-                          className="btn btn-success animate__animated animate__fadeInUp animate__delay-1s"
-                          onClick={() =>
-                            navigate(`/destination/${detail.id}/transaction`)
-                          }
-                        >
-                          Beli Tiket
-                        </button>
+                        {token === "" ? (
+                          <>
+                            <button
+                              className="btn btn-success animate__animated animate__fadeInUp animate__delay-1s"
+                              onClick={() => navigate("/login")}
+                            >
+                              Beli Tiket
+                            </button>
+                          </>
+                        ) : (
+                          <>
+                            <button
+                              className="btn btn-success animate__animated animate__fadeInUp animate__delay-1s"
+                              onClick={() =>
+                                navigate(
+                                  `/destination/${detail.id}/transaction`
+                                )
+                              }
+                            >
+                              Beli Tiket
+                            </button>
+                          </>
+                        )}
                       </Col>
                     </Row>
                   </div>

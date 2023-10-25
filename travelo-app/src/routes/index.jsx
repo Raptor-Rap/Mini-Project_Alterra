@@ -106,12 +106,15 @@ export default function Router() {
     },
     {
       path: "/destination/:id/transaction",
-      element: (
-        <>
-          <ScrollToTop />
-          <Transaction />
-        </>
-      ),
+      element:
+        token === "" ? (
+          <Navigate to="/" />
+        ) : (
+          <>
+            <ScrollToTop />
+            <Transaction />
+          </>
+        ),
     },
     {
       path: "/history",
