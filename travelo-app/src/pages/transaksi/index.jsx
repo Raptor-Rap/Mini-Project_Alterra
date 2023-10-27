@@ -81,7 +81,7 @@ export default function Transaction() {
                     label="Nama"
                     name="nama"
                     register={register}
-                    error={errors.name?.message}
+                    error={errors.nama?.message}
                   />
                   <Input
                     aria-label="input-email"
@@ -96,7 +96,7 @@ export default function Transaction() {
                     name="telepon"
                     type="number"
                     register={register}
-                    error={errors.phone?.message}
+                    error={errors.telepon?.message}
                   />
                   <Select
                     aria-label="select-paket-wisata"
@@ -109,7 +109,7 @@ export default function Transaction() {
                     ]}
                     placeholder="Pilih Paket"
                     register={register}
-                    error={errors.package?.message}
+                    error={errors.paket?.message}
                   />
                   <Select
                     aria-label="select-metode-pembayaran"
@@ -118,7 +118,7 @@ export default function Transaction() {
                     options={["Kartu kredit", "Kartu debit", "Paypal"]}
                     placeholder="Pilih Metode Pembayaran"
                     register={register}
-                    error={errors.payment?.message}
+                    error={errors.pembayaran?.message}
                   />
                   <div className="d-grid pt-1">
                     <Button
