@@ -37,7 +37,7 @@ function TextArea(props) {
         {label}
       </label>
       <textarea
-        className={clsx(`form-control p-4 ${error ? "is-invalid" : ""}`)}
+        className={clsx(`form-control ${error ? "is-invalid" : ""}`)}
         {...(register ? register(name) : {})}
         {...props}
       />
