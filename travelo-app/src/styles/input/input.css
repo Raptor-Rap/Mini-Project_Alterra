@@ -1,6 +1,7 @@
 .add-destination .destination,
 .add-testimonial .testimonial,
-.transaction-page .transaction {
+.transaction-page .transaction,
+.openai-page .openai {
   background-color: var(--primary-color);
 }
 

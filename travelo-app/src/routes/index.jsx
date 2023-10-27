@@ -17,6 +17,7 @@ import AddTestimonial from "../pages/testimonial/add";
 import DetailDestination from "../pages/destination/detail";
 import Transaction from "../pages/transaksi/index";
 import History from "../pages/transaksi/history";
+import AIPage from "../pages/openai/index";
 import ScrollToTop from "../components/scroll";
 import { setAxiosConfig } from "../utils/apis/axiosWithConfig";
 import { useToken } from "../utils/contexts/token";
@@ -152,6 +153,15 @@ export default function Router() {
         <>
           <ScrollToTop />
           <Faq />
+        </>
+      ),
+    },
+    {
+      path: "/faq/question",
+      element: (
+        <>
+          <ScrollToTop />
+          <AIPage />
         </>
       ),
     },
