@@ -3,7 +3,8 @@ import { Container, Row, Col, Accordion } from "react-bootstrap";
 import { getFaq } from "../utils/apis/faq/api";
 import { Loading } from "./loading";
 
-export default function FaqComponent() {
+export default function FaqComponent(props) {
+  const { children, height } = props;
   const [faq, setFaq] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -23,7 +24,7 @@ export default function FaqComponent() {
 
   return (
     <div className="faq">
-      <Container>
+      <Container className={height}>
         <Row>
           <Col>
             <h2 className="text-center fw-bold animate__animated animate__fadeInUp animate__delay-1s">
@@ -49,6 +50,7 @@ export default function FaqComponent() {
             })}
           </Row>
         )}
+        {children}
       </Container>
     </div>
   );
