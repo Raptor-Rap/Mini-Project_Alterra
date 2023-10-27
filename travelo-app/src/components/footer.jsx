@@ -52,7 +52,7 @@ export default function FooterComponent() {
             <div className="subscribes">
               <input type="text" placeholder="Email" />
               <button className="btn btn-danger rounded-end rounded-0">
-                Get Now!
+                Get!
               </button>
             </div>
             <div className="social mt-3">

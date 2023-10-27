@@ -44,7 +44,7 @@ export default function DetailTour() {
                   <div>
                     <img src={detail.image} alt="Tour Image" />
                   </div>
-                  <div className="text container ">
+                  <Container className="text">
                     <div className="row align-items-start">
                       <h2>{detail.destination}</h2>
                       <p className="detail-description animate__animated animate__fadeInUp animate__delay-0.8s">
@@ -83,7 +83,7 @@ export default function DetailTour() {
                         )}
                       </Col>
                     </Row>
-                  </div>
+                  </Container>
                 </div>
               </Col>
             )}

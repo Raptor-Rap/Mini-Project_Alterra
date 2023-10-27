@@ -10,7 +10,7 @@ function Input(props) {
         {label}
       </label>
       <input
-        className={clsx(`form-control ${error ? "is-invalid" : ""}`)}
+        className={clsx(`form-control p-2 ${error ? "is-invalid" : ""}`)}
         {...(register
           ? register(name, {
               valueAsNumber: type === "number" ? true : false,
@@ -37,7 +37,7 @@ function TextArea(props) {
         {label}
       </label>
       <textarea
-        className={clsx(`form-control ${error ? "is-invalid" : ""}`)}
+        className={clsx(`form-control p-4 ${error ? "is-invalid" : ""}`)}
         {...(register ? register(name) : {})}
         {...props}
       />
@@ -59,7 +59,7 @@ function Select(props) {
         {label}
       </label>
       <select
-        className={clsx(`form-control ${error ? "is-invalid" : ""}`)}
+        className={clsx(`form-control p-2 ${error ? "is-invalid" : ""}`)}
         defaultValue=""
         {...(register ? register(name) : {})}
         {...props}

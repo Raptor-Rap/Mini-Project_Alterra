@@ -93,7 +93,7 @@ export default function AddTestimoni() {
               <Col>
                 <form
                   onSubmit={handleSubmit(onSubmit)}
-                  aria-label="destination-form"
+                  aria-label="testimonial-form"
                 >
                   <Input
                     aria-label="input-name"
