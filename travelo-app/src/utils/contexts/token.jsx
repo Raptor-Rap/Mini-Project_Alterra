@@ -11,7 +11,7 @@ const contextValue = {
   changeToken: () => {},
 };
 
-const ThemeContext = createContext(contextValue);
+const TokenContext = createContext(contextValue);
 
 function TokenProvider({ children }) {
   const initialValue = localStorage.getItem("user") ?? "";
@@ -39,14 +39,14 @@ function TokenProvider({ children }) {
   );
 
   return (
-    <ThemeContext.Provider value={tokenContextValue}>
+    <TokenContext.Provider value={tokenContextValue}>
       {children}
-    </ThemeContext.Provider>
+    </TokenContext.Provider>
   );
 }
 
 function useToken() {
-  const context = useContext(ThemeContext);
+  const context = useContext(TokenContext);
 
   if (context === undefined) {
     console.log("ERROR, useToken must be used within TokenContext");
@@ -56,37 +56,3 @@ function useToken() {
 }
 
 export { TokenProvider, useToken };
-
-// import { createContext, useState, useMemo, useContext } from "react";
-
-// const TokenContext = createContext("");
-
-// function TokenProvider({ children }) {
-//   const [token, setToken] = useState("");
-
-//   const tokenContextValue = useMemo(
-//     () => ({
-//       token,
-//       setToken,
-//     }),
-//     [token]
-//   );
-
-//   return (
-//     <TokenContext.Provider value={tokenContextValue}>
-//       {children}
-//     </TokenContext.Provider>
-//   );
-// }
-
-// function useToken() {
-//   const tokenContext = useContext(TokenContext);
-
-//   if (tokenContext === undefined) {
-//     console.log("ERROR, useToken must be used within TokenContext");
-//   }
-
-//   return tokenContext;
-// }
-
-// export { TokenProvider, useToken };
