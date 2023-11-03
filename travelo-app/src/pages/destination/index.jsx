@@ -95,7 +95,7 @@ export default function Destinasi() {
                         <p className="px-3 pb-2">Selengkapnya...</p>
                       </Link>
                       <div className="ket d-flex justify-content-between align-items-center px-3 pb-3">
-                        <p className="m-0 text-primary fw-bold">{data.price}</p>
+                        <p className="m-0 fw-bold">{data.price}</p>
                         <div>
                           {token === "" ? (
                             <></>
@@ -110,6 +110,10 @@ export default function Destinasi() {
                               <button
                                 className="btn btn-danger rounded-1"
                                 onClick={() => onClickDelete(data.id)}
+                                style={{
+                                  backgroundColor: "#FF6666",
+                                  borderColor: "#FF6666",
+                                }}
                               >
                                 Hapus
                               </button>
@@ -125,21 +129,17 @@ export default function Destinasi() {
             <Row>
               <Col className="text-center">
                 {token === "" ? (
-                  <button
-                    className="btn btn-success rounded-5 btn-lg"
-                    data-aos="fade-up"
-                    data-aos-duration="1000"
-                    onClick={() => navigate("/login")}
-                  >
-                    Tambah Destinasi
-                    <i className="fa-solid fa-plus ms-1"></i>
-                  </button>
+                  <></>
                 ) : (
                   <button
                     className="btn btn-success rounded-5 btn-lg"
                     data-aos="fade-up"
                     data-aos-duration="1000"
                     onClick={() => navigate("/destination/add")}
+                    style={{
+                      backgroundColor: "#599b5e",
+                      borderColor: "#599b5e",
+                    }}
                   >
                     Tambah Destinasi
                     <i className="fa-solid fa-plus ms-1"></i>

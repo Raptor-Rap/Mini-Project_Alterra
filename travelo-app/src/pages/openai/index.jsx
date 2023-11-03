@@ -25,7 +25,12 @@ export default function chat() {
   async function fetchData() {
     try {
       const response = await openai.chat.completions.create({
-        messages: [{ role: "system", content: "You are a helpful assistant." }],
+        messages: [
+          {
+            role: "system",
+            content: "Anda adalah assistant yang membantu",
+          },
+        ],
         model: "gpt-3.5-turbo",
       });
       setResults(response.choices);
@@ -83,10 +88,15 @@ export default function chat() {
                         `border rounded p-3 mb-4 ${
                           result.message.role === "assistant"
                             ? "left"
-                            : "right bg-success text-light"
+                            : "right text-light"
                         }`
                       )}
-                      style={{ backgroundColor: "#ffffff" }}
+                      style={{
+                        backgroundColor:
+                          result.message.role === "assistant"
+                            ? "#ffffff"
+                            : "#4e8853",
+                      }}
                       key={index}
                     >
                       {result.message.content}
@@ -107,7 +117,7 @@ export default function chat() {
                             border: "1px solid #B4B4B4",
                             borderRadius: "15px",
                           }}
-                          placeholder="Insert prompt"
+                          placeholder="Masukan perintah"
                           value={prompt}
                           onChange={(e) => setPrompt(e.target.value)}
                         />
