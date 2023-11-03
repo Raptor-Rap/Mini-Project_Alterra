@@ -28,7 +28,8 @@ export default function chat() {
         messages: [
           {
             role: "system",
-            content: "Anda adalah assistant yang membantu",
+            content:
+              "Selamat datang di layanan kami! Saya adalah asisten yang siap membantu Anda.",
           },
         ],
         model: "gpt-3.5-turbo",
