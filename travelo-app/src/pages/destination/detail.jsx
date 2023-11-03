@@ -53,7 +53,7 @@ export default function DetailTour() {
                     </div>
                     <Row className="price d-flex justify-content-between align-items-center align-items-end">
                       <Col>
-                        <p className="animate__animated animate__fadeInUp animate__delay-1s text-primary">
+                        <p className="animate__animated animate__fadeInUp animate__delay-1s">
                           {detail.price}
                         </p>
                       </Col>
@@ -63,6 +63,10 @@ export default function DetailTour() {
                             <button
                               className="btn btn-success animate__animated animate__fadeInUp animate__delay-1s"
                               onClick={() => navigate("/login")}
+                              style={{
+                                backgroundColor: "#599b5e",
+                                borderColor: "#599b5e",
+                              }}
                             >
                               Beli Tiket
                             </button>
@@ -76,6 +80,10 @@ export default function DetailTour() {
                                   `/destination/${detail.id}/transaction`
                                 )
                               }
+                              style={{
+                                backgroundColor: "#599b5e",
+                                borderColor: "#599b5e",
+                              }}
                             >
                               Beli Tiket
                             </button>

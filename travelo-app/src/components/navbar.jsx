@@ -77,12 +77,24 @@ export default function NavbarComponent() {
             <div className="text-center">
               {token === "" ? (
                 <Link to="/login">
-                  <button className="btn btn-success rounded-1">Login</button>
+                  <button
+                    className="btn btn-success rounded-1"
+                    style={{
+                      backgroundColor: "#599b5e",
+                      borderColor: "#599b5e",
+                    }}
+                  >
+                    Login
+                  </button>
                 </Link>
               ) : (
                 <button
                   className="btn btn-danger rounded-1"
                   onClick={() => handleLogout()}
+                  style={{
+                    backgroundColor: "#FF6666",
+                    borderColor: "#FF6666",
+                  }}
                 >
                   Logout
                 </button>

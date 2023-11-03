@@ -84,6 +84,10 @@ export default function homepage() {
                   <button
                     className="btn btn-success btn-lg rounded-1 me-2 mb-xs-0 mb-2 animate__animated animate__fadeInUp animate__delay-1s center"
                     onClick={() => navigate("/destination")}
+                    style={{
+                      backgroundColor: "#599b5e",
+                      borderColor: "#599b5e",
+                    }}
                   >
                     Lihat Destinasi
                   </button>
@@ -127,7 +131,7 @@ export default function homepage() {
                         <p className="px-3 pb-2">Selengkapnya...</p>
                       </Link>
                       <div className="ket d-flex justify-content-between align-items-center px-3 pb-3">
-                        <p className="m-0 text-primary fw-bold">{data.price}</p>
+                        <p className="m-0 fw-bold">{data.price}</p>
                       </div>
                     </Col>
                   );
@@ -141,6 +145,10 @@ export default function homepage() {
                   data-aos="fade-up"
                   data-aos-duration="1000"
                   onClick={() => navigate("/destination")}
+                  style={{
+                    backgroundColor: "#599b5e",
+                    borderColor: "#599b5e",
+                  }}
                 >
                   Lihat Semua Destinasi
                   <i className="fa-solid fa-chevron-right ms-1"></i>

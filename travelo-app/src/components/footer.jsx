@@ -51,7 +51,13 @@ export default function FooterComponent() {
             <h5 className="fw-bold mb-3">Berlangganan</h5>
             <div className="subscribes">
               <input type="text" placeholder="Email" />
-              <button className="btn btn-danger rounded-end rounded-0">
+              <button
+                className="btn btn-danger rounded-end rounded-0"
+                style={{
+                  backgroundColor: "#FF6666",
+                  borderColor: "#FF6666",
+                }}
+              >
                 Get!
               </button>
             </div>

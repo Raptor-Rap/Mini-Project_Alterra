@@ -4,7 +4,7 @@
 
 :root {
   --primary-color: #f6f8fd;
-  --secondary-color: #198754;
+  --secondary-color: #599b5e;
   --color-text: #231942;
   --navbar-color: #ffffff;
   --navbar-color-text: #000000;
@@ -187,6 +187,7 @@ header::after {
 
 .homepage .destinasi .row:nth-child(2) img {
   height: 250px;
+  object-fit: cover;
 }
 
 .homepage .destinasi .row:nth-child(2) .star i {
@@ -319,6 +320,7 @@ header::after {
 
 .destinasi-page .destinasi .row:nth-child(2) img {
   height: 250px;
+  object-fit: cover;
 }
 
 .destinasi-page .destinasi .row:nth-child(2) .star i {
@@ -442,6 +444,7 @@ header::after {
   width: 80px;
   height: 80px;
   border-radius: 100%;
+  object-fit: cover;
   -webkit-border-radius: 100%;
   -moz-border-radius: 100%;
   -ms-border-radius: 100%;
