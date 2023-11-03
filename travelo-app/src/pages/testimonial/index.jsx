@@ -68,21 +68,17 @@ export default function testimonialPage() {
             <Row>
               <Col className="text-center">
                 {token === "" ? (
-                  <button
-                    className="btn btn-success rounded-5 btn-lg"
-                    data-aos="fade-up"
-                    data-aos-duration="1000"
-                    onClick={() => navigate("/login")}
-                  >
-                    Tambah Testimoni
-                    <i className="fa-solid fa-plus ms-1"></i>
-                  </button>
+                  <></>
                 ) : (
                   <button
                     className="btn btn-success rounded-5 btn-lg"
                     data-aos="fade-up"
                     data-aos-duration="1000"
                     onClick={() => navigate("/testimonial/add")}
+                    style={{
+                      backgroundColor: "#599b5e",
+                      borderColor: "#599b5e",
+                    }}
                   >
                     Tambah Testimoni
                     <i className="fa-solid fa-plus ms-1"></i>
